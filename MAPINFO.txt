@@ -1,17 +1,17 @@
 GameInfo
 {
-    playerclasses="ReedusPlayer"
-	AddEventHandlers = "VignetteShaderHandler","FilmGrainShaderHandler","MBlurHandler","CustomShaderHandler"
-    menufontcolor_title = "White"
-   	menufontcolor_label = "White"
+	playerclasses="ReedusPlayer"
+	AddEventHandlers = "OffhandWeaponHandler","CustomShaderHandler"
+	menufontcolor_title = "White"
+	menufontcolor_label = "White"
 	menufontcolor_value = "White"
 	menufontcolor_action = "White"
 	menufontcolor_header = "White"
 	cursorpic = "ptcur"
-    BORDERFLAT = "textures/st_dev/PTBLACK.png" 
+	BORDERFLAT = "textures/st_dev/PTBLACK.png" 
 
-   dimcolor = "BLACK"
-dimamount = 0.5
+	dimcolor = "BLACK"
+	dimamount = 0.5
 }
 
 clearepisodes

@@ -2,66 +2,163 @@ class PlayerInteractionWep : Weapon
 {
     Default
     {
-  Weapon.SelectionOrder 1900;
-  Weapon.AmmoUse 1;
-  Weapon.AmmoGive 20;
-  Weapon.AmmoType "Clip";
-  DamageType "InteractionDamage";
-  Obituary "%o got stranded in his death.";
-  +WEAPON.AMMO_OPTIONAL
-  +WEAPON.NOAUTOAIM
-  Inventory.Pickupmessage "You picked up an incredible box of nothing!";
-     }
-  States
-  {
-  Ready:
-    TNT1 A 1 
-	        {
-            A_CheckReload();
-            A_WeaponReady();
-        }
-    TNT1 A 0 A_TakeInventory("Token_HasReleasedAltFire", 100);
-    Loop;
-  Deselect:
-    TNT1 A 1 A_Lower;
-    Loop;
-  Select:
-    TNT1 A 1 A_Raise;
-    Loop;
-  Fire:
-    TNT1 A 1;
-    //TNT1 A 8
-    //{
-	//if (CountInv("Token_FlashlightEnabler"))
-	//    {
-    //        if (CountInv("PowerFlashlight"))
-    //        {
-    //            A_PlaySound("flashlight/off");
-    //            A_TakeInventory("PowerFlashlight");
-    //        }
-    //       else
-    //        {
-    //            A_PlaySound("flashlight/on");
-    //            A_GiveInventory("PowerFlashlight");
-    //        }
-    //    }
-	// }
-        Goto Ready;
-  AltFire:
-    TNT1 A 1 A_ZoomFactor(1.5);
-	goto AltFireHold;
-  AltFireHold:
-    TNT1 A 1 A_FireProjectile("InteractionBall",0,0,0,13,FPF_NOAUTOAIM,0);
-    TNT1 A 0 A_Refire("AltFireHold");
-	goto AltFireExit;
-  AltFireExit:
-    TNT1 A 0 A_GiveInventory("Token_HasReleasedAltFire", 1);
-    TNT1 A 1 A_ZoomFactor(1.0);
-	goto Ready;
-  Spawn:
-    PIST A -1;
-    Stop;
-  }
+	Weapon.SelectionOrder 1900;
+	Weapon.AmmoUse 1;
+	Weapon.AmmoGive 20;
+	Weapon.AmmoType "Clip";
+	DamageType "InteractionDamage";
+	Obituary "%o got stranded in his death.";
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.NOAUTOAIM
+	+WEAPON.MELEEWEAPON
+	+WEAPON.NOHANDSWITCH
+	Inventory.Pickupmessage "You picked up an incredible box of nothing!";
+	}
+	
+	override void Tick()
+	{
+		if(!owner || !owner.player || owner.player.mo.health < 1) return;
+		
+		if(GetAge() && GetAge() % 17 == 0)
+		{
+			vector3 startPos = bOffhandWeapon ? owner.player.mo.OffhandPos : owner.player.mo.AttackPos;
+			startPos.y += owner.radius/2;
+			double angle = (bOffhandWeapon ? owner.player.mo.OffhandAngle : owner.player.mo.AttackAngle) + 90.0;
+			double pitch = -(bOffhandWeapon ? owner.player.mo.OffhandPitch : owner.player.mo.AttackPitch);
+			
+			Actor lineTracer = Actor.Spawn("PTlineTraceUseDummy", startPos);
+			lineTracer.master = owner.player.mo;
+			lineTracer.A_SetAngle(angle);
+			lineTracer.A_SetPitch(pitch);
+			PTlineTraceUseDummy(lineTracer).range = 0.25;
+		}
+	}
+	
+	States
+	{
+	Ready:
+		TNT1 A 0;
+		HAND A 0 A_TakeInventory("Token_HasReleasedAltFire", 100);
+		HAND A 1 
+		{
+			A_CheckReload();
+			A_WeaponReady();
+		}
+		Loop;
+	Deselect:
+		HAND A 1 A_Lower(160);
+		Loop;
+	Select:
+		HAND A 1 A_Raise(160);
+		Loop;
+	Fire:
+		HAND A 1;
+		Goto Ready;
+	AltFire:
+		HAND B 1;
+		goto AltFireHold;
+	AltFireHold:
+		HAND B 1 A_FireProjectile("InteractionBall",0,0,0,13,FPF_NOAUTOAIM,0);
+		HAND B 0 A_Refire("AltFireHold");
+		goto AltFireExit;
+	AltFireExit:
+		HAND A 1 A_GiveInventory("Token_HasReleasedAltFire", 1);
+		goto Ready;
+	Spawn:
+		PIST A -1;
+		Stop;
+	}
+}
+
+class PlayerOffhandWep : PlayerInteractionWep
+{
+	Default
+	{
+	+WEAPON.OFFHANDWEAPON
+	}
+	
+	States
+	{
+	Ready:
+		TNT1 A 0;
+		HAND A 0 A_TakeInventory("Token_HasReleasedAltFire", 100);
+		HAND A 0 A_JumpIfInventory("PowerFlashlight", 1, "ReadyFLashlight");
+		HAND A 1 
+		{
+			A_CheckReload();
+			A_WeaponReady();
+		}
+		Loop;
+	ReadyFLashlight:
+		HAND B 1
+		{
+			A_CheckReload();
+			A_WeaponReady();
+		}
+		HAND B 0 A_JumpIfInventory("PowerFlashlight", 1, "ReadyFLashlight");
+		Goto Ready;
+	Deselect:
+		HAND A 1 A_Lower(160);
+		Loop;
+	Select:
+		HAND A 1 A_Raise(160);
+		Loop;
+	Fire:
+		HAND # 1;
+		Goto Ready;
+	AltFire:
+		HAND B 1;
+		goto AltFireHold;
+	AltFireHold:
+		HAND B 1 A_FireProjectile("InteractionBall",0,0,0,13,FPF_NOAUTOAIM,0);
+		HAND B 0 A_Refire("AltFireHold");
+		goto AltFireExit;
+	AltFireExit:
+		HAND A 1 A_GiveInventory("Token_HasReleasedAltFire", 1);
+		goto Ready;
+	Spawn:
+		PIST A -1;
+		Stop;
+	}
+}
+
+Class PTlineTraceUseDummy : Actor
+{
+	Default
+	{
+	Mass        0;
+	Radius      1;
+	Height      2;
+
+	+NOBLOCKMAP;
+	+NOGRAVITY;
+	+DONTSPLASH;
+	+SKYEXPLODE;
+	+GHOST;
+	-COUNTKILL;
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		Stop;
+	}
+	
+	override void Tick()
+	{
+		FLineTraceData l;
+		double z = height * 0.5 - floorclip + pos.z;
+		LineTrace(angle, range * 64, pitch, TRF_BLOCKUSE, offsetz: z, data: l);
+		let lline = l.HitLine;
+		if (lline)
+		{
+			lline.Activate(master, l.LineSide, SPAC_Use);
+		}
+		destroy();
+	}
+	
+	double range;
 }
 
 // Manages the components of the beam, and attaches it to its source
@@ -235,8 +332,9 @@ class FlashlightBeam : SpotLight
     {
         Super.Tick();
 
-        Vector3 beamPos = master.pos;
-        beamPos.xy += AngleToVector(master.angle, offset.x);
+        let plyr = PlayerPawn(master);
+        Vector3 beamPos = plyr.OffhandPos; //master.pos;
+        /*beamPos.xy += AngleToVector(master.angle, offset.x);
         beamPos.xy += AngleToVector(master.angle - 90, offset.y);
 
         let plyr = PlayerPawn(master);
@@ -247,13 +345,13 @@ class FlashlightBeam : SpotLight
         else
         {
             beamPos.z += master.height / 2;
-        }
+        }*/
 
         SetOrigin(beamPos, true);
 
         vel = master.vel;
-        angle = master.angle;
-        pitch = master.pitch;
+        angle = plyr.OffhandAngle + 90.; //master.angle;
+        pitch = -plyr.OffhandPitch; //master.pitch;
     }
 }
 
@@ -321,4 +419,36 @@ class FlashlightBounce : SpotLight
         angle = VectorAngle(reflection.x, reflection.y);
         pitch = -ASin(reflection.z / reflection.Length());
     }
+}
+
+Class OffhandWeaponHandler : Eventhandler
+{
+	override void WorldTick()
+	{
+		if(_isTitlemap) return;
+		
+		Playerinfo player = Players[ConsolePlayer];
+		if(!player) return;
+		
+		if(!player.OffhandWeapon)
+		{
+			let weap = Weapon(player.mo.FindInventory("PlayerOffhandWep"));
+			player.OffhandWeapon = weap;
+			player.PendingWeapon = weap;
+			player.mo.BringUpWeapon();
+		}
+	}
+
+	override void WorldLoaded(WorldEvent event)
+	{
+		_isTitlemap = CheckTitlemap();
+	}
+
+	private static bool CheckTitlemap()
+	{
+		bool isTitlemap = (level.mapname == "TITLEMAP");
+		return isTitlemap;
+	}
+	
+	private bool _isTitlemap;
 }

@@ -15,6 +15,7 @@ ACTOR ReedusPlayer : ReedusZscript
   Player.DisplayName "You"
   Player.CrouchSprite "PLYC"
   Player.StartItem "PlayerInteractionWep"
+  Player.StartItem "PlayerOffhandWep"
   Player.StartItem "FlashLightBeamStrenght", 100
   Player.WeaponSlot 1, PlayerInteractionWep
   Player.ColorRange 112, 127

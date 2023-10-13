@@ -20,23 +20,23 @@ LISTMENU "MainMenu"
 OptionMenu "PTMainOptions"
 {
 	Title "OPTIONS"
+	Submenu "Quick Menu",			"QuickMenu"
+	Submenu "VR Options",			"VROptionsMenu"
+	StaticText ""
     StaticText "--General Settings--"
 	StaticText ""
-	Submenu "Set video mode",			"VideoModeMenu"
 	Submenu "Display Options",			"VideoOptions"
     Submenu "Sound Options",			"SoundOptions"
 	StaticText ""
 	StaticText  "--Adjust the gamma so that the image on the left is clearly visible and the image on the right is just barely visible.--", "PtText2"
 	StaticText ""
 	Submenu "Gamma test image",	"PTGamma"
-    Slider "$DSPLYMNU_GAMMA",					"vid_gamma",					0.75, 3.0, 0.05, 2
+    Slider "$DSPLYMNU_GAMMA",					"Gamma",						0.75, 3.0, 0.05, 2
 	StaticText ""
 	StaticText "--It is highly recommended to enable always run, mouselook and configure the movement and use keys. Altfire is required to zoom at things.--", "PtText2"
     StaticText ""
     Option "$PLYRMNU_ALWAYSRUN", cl_run, "OnOff"
     //Slider "$PLYRMNU_AUTOAIM", "Autoaim", 0, 35, 1
-	StaticText ""
-    Submenu "Keyboard and Mouse Options",	"PTSpecificControls"
     StaticText ""
 	StaticText "--Set texture filtering to ''none'' (trilinear) to display the game correctly.--", "PtText2"
     StaticText ""
@@ -57,17 +57,12 @@ OptionMenu "PTMainOptions"
 	StaticText " "
 	Submenu "Shader Options",	"PTOptions"
 	StaticText " "
-	StaticText "--Optional effects such as Ambient Occlusion and Bloom can be enabled here--", "PtText2"
-	StaticText " "
-	Submenu "PostProcessing Options",			"PostProcessMenu"
-	StaticText " "
     StaticText "These are the standard GZDoom Options.", "PtText2"
     StaticText "Only for advanced users.", "PtText"
 	StaticText " "
-	Submenu "Default Gzdoom Options Menu",			"PTAdvancedOptions"
+	Submenu "Default Gzdoom Options Menu",			"OptionsMenu"
 	SafeCommand "Reset to defaults",	"reset2defaults"
 	SafeCommand	"Reset to last saved",	"reset2saved"
-	Command "Go to console",			"menuconsole"
 }
 
 
@@ -80,12 +75,12 @@ OptionMenu "PTOptions"
 {
 	Position -15
 	Title "PT Options"
-	Option "Grain Enabled", "cl_filmgrain_pt", "YesNo"
-	StaticText ""
-	Option "Vignette Enabled", "cl_vignette_pt", "YesNo"
-	StaticText ""
-    Option "Motion Blur Enabled", "mblur_pt", YesNo
-	StaticText ""
+	//Option "Grain Enabled", "cl_filmgrain_pt", "YesNo"
+	//StaticText ""
+	//Option "Vignette Enabled", "cl_vignette_pt", "YesNo"
+	//StaticText ""
+    //Option "Motion Blur Enabled", "mblur_pt", YesNo
+	//StaticText ""
 	Option  "Footsteps Enabled", "fs_enabled","OnOff"
 }
 

@@ -6,6 +6,7 @@ material texture models/props/walllamp/pt_lampw3.png //original texture
 
 //Shaders
 
+/*
 HardwareShader PostProcess scene
 {
 	Name "filmgrainshader"
@@ -33,6 +34,7 @@ HardwareShader PostProcess beforebloom
 	Uniform int blendmode
 	//Uniform float dist
 }
+*/
 
 HardwareShader PostProcess scene
 {
@@ -40,4 +42,41 @@ HardwareShader PostProcess scene
 	Shader "shaders/PostProcess/TvDist.fp" 330
 	Uniform float timer
 	Uniform vec3 mpos
+}
+
+material texture "models/player/hand_skin.png"
+{
+	shader "shaders/SimSun.fp"
+    normal "models/player/hand_skin_N.png" 
+    specular "models/player/hand_skin_S.png"
+    glossiness 10
+	specularlevel 5
+}
+
+material texture "models/player/hand_suit.png"
+{
+	shader "shaders/SimSun.fp"
+    normal "models/player/glass_N.png.png" 
+    specular "models/player/hand_suit_S.png"
+    glossiness 10
+	specularlevel 5
+}
+
+material texture "models/player/flashlight.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/player/glass.png"
+{
+	shader "shaders/SimSun.fp"
+    normal "models/player/glass_N.png.png" 
+    specular "models/player/glass.png"
+    glossiness 10
+	specularlevel 5
+}
+
+material texture "models/player/bulb.png"
+{
+	brightmap "models/player/bulb.png"
 }

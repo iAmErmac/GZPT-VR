@@ -4,15 +4,15 @@ server int fs_enabled = 1;
 server float fs_volume_mul = 1.0;
 server float fs_delay_mul = 1.0;
 
-user bool cl_filmgrain_pt = true;
+user bool cl_filmgrain_pt = false;
 user float cl_filmgrain_amount_pt = 0.175;
 user int cl_filmgrain_pixelsize_pt = 320;
 
-user bool cl_vignette_pt = true;
+user bool cl_vignette_pt = false;
 user float cl_vignette_intensity_pt = 120.0;
 user float cl_vignette_falloff_pt = 0.160;
 
-user bool mblur_pt = true ;
+user bool mblur_pt = false ;
 user int mblur_samples_pt = 45 ;
 user float mblur_strength_pt = 64 ;
 user float mblur_strength_walk_pt = 30 ;
