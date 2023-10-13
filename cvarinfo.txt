@@ -1,4 +1,4 @@
-user bool cl_tvdistortion = true;
+user bool cl_tvdistortion = false;
 
 server int fs_enabled = 1;
 server float fs_volume_mul = 1.0;
@@ -24,4 +24,6 @@ user float mblur_threshold_pt = 30 ;
 user float mblur_recovery2_pt = 90 ;
 user bool mblur_dynsamps_pt = true ;
 user int mblur_pcurve_pt = 1 ;
+
+user bool cl_darkness_mode = true;
 

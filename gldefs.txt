@@ -34,7 +34,6 @@ HardwareShader PostProcess beforebloom
 	Uniform int blendmode
 	//Uniform float dist
 }
-*/
 
 HardwareShader PostProcess scene
 {
@@ -43,6 +42,7 @@ HardwareShader PostProcess scene
 	Uniform float timer
 	Uniform vec3 mpos
 }
+*/
 
 material texture "models/player/hand_skin.png"
 {

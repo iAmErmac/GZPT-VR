@@ -1,7 +1,7 @@
 GameInfo
 {
 	playerclasses="ReedusPlayer"
-	AddEventHandlers = "OffhandWeaponHandler","CustomShaderHandler"
+	AddEventHandlers = "OffhandWeaponHandler", "PTDarkness_Handler"
 	menufontcolor_title = "White"
 	menufontcolor_label = "White"
 	menufontcolor_value = "White"

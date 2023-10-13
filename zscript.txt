@@ -2,6 +2,7 @@ version "2.4"
 
 #include "zscript/flashlight.zs"
 #include "zscript/shaderctrl.zc"
+#include "zscript/darkdoomz.txt"
 
 class ReedusZscript:PlayerPawn{
 override void BeginPlay()

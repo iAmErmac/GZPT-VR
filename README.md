@@ -15,7 +15,14 @@ Batandy's itch.io page (Non-VR version): https://forum.zdoom.org/viewtopic.php?t
 
 ZDoom forum discussion: https://forum.zdoom.org/viewtopic.php?t=70451
 
+Some part of the puzzle are sometimes finicky to work so if you are stuck you may want to watch the walkthrough.
+Walkthrough (SPOILERS): https://www.youtube.com/watch?v=fvi0R32MFvo
+
 [![Download Now](https://raster.shields.io/github/downloads/iAmErmac/ZBlood-VR/total)](https://github.com/iAmErmac/ZBlood-VR/releases/latest)
+
+## Note
+* Alt-Fire will trigger extra interaction mode
+* if you are unsure about what to interact with, point the controller to the objects and try pressing USE and Alt-Fire button to trigger any hidden interaction
 
 ## VR Enhancements
 * Player now has both hands
@@ -23,6 +30,7 @@ ZDoom forum discussion: https://forum.zdoom.org/viewtopic.php?t=70451
 * Flashlight has been fixed to follow off-hand torch
 * Menu updated to include VR options
 * Removed unsupported shaders
+* Added extra dark mode (because default light mode in QuestZDoom is not dark enough)
 
 ![Fear awaits](https://i.imgur.com/2DMjS3r.png)
 
@@ -70,6 +78,7 @@ To install:
 
 * Batandy - for GZ-PT mod
 * Cherno - for SimSun shader
+* Caligari87 - DarkDoomZ codes
 * Ermac - for VR enhancements
 
 ## 3D Model credits
