@@ -1,0 +1,13 @@
+StatusBar FullScreen, ForceScaled, fullscreenoffsets
+{
+}
+
+StatusBar Normal, ForceScaled, fullscreenoffsets
+{
+}
+
+
+statusbar Automap, ForceScaled
+{
+DrawImage "AUTMP", -54, 0;
+}

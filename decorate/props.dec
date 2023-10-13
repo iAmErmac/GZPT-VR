@@ -1,0 +1,1082 @@
+ACTOR PT_Beer1 21013
+{
+//$Category Props_Trash
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   BEER A -1
+   Stop
+  }
+}
+
+ACTOR PT_Beer2 21014
+{
+//$Category Props_Trash
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   BEER B -1
+   Stop
+  }
+}
+
+ACTOR PT_Beer3 21015
+{
+//$Category Props_Trash
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   BEER C -1
+   Stop
+  }
+}
+
+ACTOR PT_Beer4 21016
+{
+//$Category Props_Trash
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   BEER D -1
+   Stop
+  }
+}
+
+ACTOR PT_Beer5 21017
+{
+//$Category Props_Trash
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   BEER E -1
+   Stop
+  }
+}
+
+ACTOR PT_Beer6 21018
+{
+//$Category Props_Trash
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   BEER F -1
+   Stop
+  }
+}
+
+ACTOR PT_Radio 21019
+{
+//$Category Props_CoreProps
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   RADI A -1
+   Stop
+  SpawnUnlit:
+   RADI B -1
+   Stop
+  }
+}
+
+ACTOR PT_WallLamp 21020
+{
+//$Category Props_Lights
+  Radius 1
+  Height 1
+  +NOGRAVITY
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A 0
+   MERR A 0 A_StopSound(CHAN_AUTO)
+  Spawn2:
+   MERR A -1
+   Stop
+  SpawnLit:
+   MER2 A 0 A_StartSound("light/buzz1",CHAN_AUTO,CHANF_OVERLAP | CHANF_LOOPING,0.4,ATTN_STATIC, 1.0,0)
+  ActualUnlit:
+   MER2 A -1
+   Stop
+  }
+}
+
+ACTOR PT_WallLampGlass 21021
+{
+//$Category Props_Lights
+  Radius 1
+  Height 1
+  Renderstyle Translucent
+  Alpha 0.5
+  +NOGRAVITY
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+ACTOR PT_WallLamp_Lit 21022
+{
+//$Category Props_Lights
+  Radius 1
+  Height 1
+  +NOGRAVITY
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A 0
+   MERR A 0 A_StartSound("light/buzz1",CHAN_AUTO,CHANF_OVERLAP | CHANF_LOOPING,0.4,ATTN_STATIC, 1.0,0)
+  Spawn2:
+   MERR A -1
+   Stop
+  SpawnUnlit:
+  TNT1 A 0 A_StopSound(CHAN_AUTO)
+  ActualUnlit:
+   MER2 A -1
+   Stop
+  }
+}
+
+ACTOR PT_CeilLamp_CreepyNoise 21023
+{
+//$Category Props_Lights
+  Radius 1
+  Height 161
+  +NOGRAVITY
+  +SPAWNCEILING
+  -SOLID
+  States
+  {
+  Spawn:
+   TNT1 A 0
+   TNT1 A 0 A_StartSound("light/woblamp",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM)
+   LAMN A 20 
+   LAMN B 20 
+   LAMN C 20 
+   LAMN B 20 
+   TNT1 A 0 A_StartSound("light/woblamp",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM)
+   LAMN A 20 
+   LAMN D 20
+   LAMN E 20 
+   LAMN D 20 
+   loop
+  SpawnUnlit:
+   TNT1 A 0
+   TNT1 A 0 A_StartSound("light/woblamp",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM)
+   LAMN F 20 
+   LAMN G 20 
+   LAMN H 20 
+   LAMN G 20 
+   TNT1 F 0 A_StartSound("light/woblamp",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM)
+   LAMN F 20 
+   LAMN I 20 
+   LAMN J 20 
+   LAMN I 20
+   loop
+  SpawnSilent:
+   LAMN F -1
+   stop
+  SpawnRed:
+   TNT1 A 0
+   LAM2 A 20 
+   LAM2 B 20 
+   LAM2 C 20 
+   LAM2 B 20 
+   LAM2 A 20 
+   LAM2 D 20
+   LAM2 E 20
+   LAM2 D 20
+   loop
+  }
+}
+
+ACTOR PT_DeskLamp 21024
+{
+//$Category Props_Lights
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   LAMP A -1 
+   Stop
+  Unlit:
+   TNT1 A 0 A_StopSound(CHAN_AUTO)
+  ActualUnlit:
+   LAMP J -1 
+   Stop
+  SpawnRed:
+   LAMP K -1
+  }
+}
+
+ACTOR PT_CeilLamp_SmallLit 21025
+{
+//$Category Props_Lights
+  Radius 1
+  Height 24
+  +NOGRAVITY
+  +SPAWNCEILING
+  -SOLID
+  States
+  {
+  Spawn:
+   LAMP B 0
+   LAMP B 0 A_StartSound("light/buzz2",CHAN_AUTO,CHANF_OVERLAP | CHANF_LOOPING,0.4,ATTN_STATIC, 1.0,0)
+  Spawn2:
+   LAMP B -1 
+   Stop
+  Unlit:
+   TNT1 A 0 A_StopSound(CHAN_AUTO)
+  ActualUnlit:
+   LAMP C -1 
+   Stop
+  }
+}
+
+ACTOR PT_CeilLamp_Small 21026
+{
+//$Category Props_Lights
+  Radius 1
+  Height 24
+  +NOGRAVITY
+  +SPAWNCEILING
+  -SOLID
+  States
+  {
+  Spawn:
+   LAMP C -1 
+   Stop
+  }
+}
+
+ACTOR PT_PotPlantBig 21027
+{
+//$Category Props_Plants
+  Radius 14
+  Height 71
+  -SOLID
+  States
+  {
+  Spawn:
+   PLNT A -1 
+   Stop
+  }
+}
+
+ACTOR PT_Clothes 21028
+{
+//$Category Props_Misc
+  Radius 8
+  Height 63
+  -SOLID
+  States
+  {
+  Spawn:
+   CLTH A -1 
+   Stop
+  }
+}
+
+ACTOR PT_Photo1 21029
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1 
+   Stop
+  GougeIt:
+   LAMP B -1
+   Stop
+  EyeGouged:
+   LAMP C -1
+   Stop
+  }
+}
+
+ACTOR PT_Photo2 21030
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1 
+   Stop
+  }
+}
+
+ACTOR PT_Photo3 21031
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1 
+   Stop
+  }
+}
+
+ACTOR PT_Photo4 21032
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1 
+   Stop
+  }
+}
+
+ACTOR PT_Photo5 21033
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1 
+   Stop
+  }
+}
+
+ACTOR PT_DeskPlant 21034
+{
+//$Category Props_Plants
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   PLNT B -1 
+   Stop
+  }
+}
+
+ACTOR PT_Dirt1 21035
+{
+//$Category Props_Dirt
+  Radius 1
+  Height 1
+  Scale 0.7
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   DIRT A -1 
+   Stop
+  }
+}
+
+ACTOR PT_Dirt2 21036
+{
+//$Category Props_Dirt
+  Radius 1
+  Height 1
+  Scale 0.7
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   DIRT B -1 
+   Stop
+  }
+}
+
+ACTOR PT_Dirt3 21037
+{
+//$Category Props_Dirt
+  Radius 1
+  Height 1
+  Scale 0.7
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   DIRT C -1 
+   Stop
+  }
+}
+
+ACTOR PT_Dirt4 21038
+{
+//$Category Props_Dirt
+  Radius 1
+  Height 1
+  Scale 0.7
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   DIRT D -1 
+   Stop
+  }
+}
+
+ACTOR PT_Dirt5 21039
+{
+//$Category Props_Dirt
+  Radius 1
+  Height 1
+  Scale 0.7
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   DIRT E -1 
+   Stop
+  }
+}
+
+ACTOR PT_TeddyBear 21040
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  Scale 0.5
+  -SOLID
+  States
+  {
+  Spawn:
+   TEDD A -1 
+   Stop
+  }
+}
+
+ACTOR PT_CeilLampSmaller 21041
+{
+//$Category Props_Lights
+  Radius 1
+  Height 15
+  +NOGRAVITY
+  -SOLID
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+   LAMP H 0
+   LAMP H 0 A_StartSound("light/buzz2",CHAN_AUTO,CHANF_OVERLAP | CHANF_LOOPING,0.4,ATTN_STATIC, 1.0,0)
+  Spawn2:
+   LAMP H -1 
+   Stop
+  }
+}
+
+ACTOR PT_DeskLampThin 21042
+{
+//$Category Props_Lights
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   LAMP G -1
+   Stop
+  SpawnLit:
+   LAMP I -1 
+   Stop
+  }
+}
+
+ACTOR PT_Phone 21043
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+ACTOR PT_ToiletPaper 21044
+{
+//$Category Props_Misc
+  Radius 1
+  Height 1
+  -SOLID
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+ACTOR PT_FlashLightProp 21045
+{
+//$Category Props_CoreProps
+  Radius 1
+  Height 1
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   FLIT A 0
+   TNT1 A -1
+   Stop
+  SpawnThere:
+   FLIT A -1
+   Stop
+  }
+}
+
+ACTOR PT_WaterDropSFX 21046
+{
+//$Category Props_CoreProps
+  Radius 1
+  Height 1
+  -SOLID
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   TNT1 A -1
+   Stop
+  SpawnSound:
+   TNT1 A 0
+   TNT1 A 0 A_StartSound("water/drop",CHAN_5,CHANF_OVERLAP,1.0,ATTN_STATIC)
+   TNT1 A 35
+   TNT1 A 0 A_Jump(128,"SpawnSound")
+   TNT1 A 35
+   loop
+  }
+}
+
+ACTOR PT_FallenPhoto 21047
+{
+//$Category Props_CoreProps
+  Radius 1
+  Height 1
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   PNTG A 0 
+   TNT1 A -1
+   Stop
+  Visible:
+   PNTG A -1
+   Stop
+  }
+}
+
+
+ACTOR PT_FallenWindow 21048
+{
+//$Category Props_CoreProps
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   TNT1 A 0
+   TNT1 A 0 A_PlaySound("window/break",CHAN_AUTO | CHAN_OVERLAP)
+   BRKW A 15
+   TNT1 A 0 A_QuakeEX(1,1,1,35,0,512,"",QF_SCALEDOWN)
+   TNT1 A 0 A_ChangeFlag("FLATSPRITE",true)
+  SpawnFlat:
+   BRKW A -1
+   Stop
+  }
+}
+
+ACTOR PT_Fridge 21049
+{
+//$Category Props_Lights
+  Radius 1
+  Height 161
+  +NOGRAVITY
+  +SPAWNCEILING
+  -SOLID
+  States
+  {
+  Spawn:
+   TNT1 A 0
+   TNT1 A 0 A_StartSound("fridge/rope",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM) 
+   FRID A 1 A_SpawnItemEx ("PTBloodDrop", Random(-4, 4), Random(-4, 4), 0, 0, 0, -8)
+   TNT1 A 0 A_StartSound("fridge/blood",CHAN_7,CHANF_OVERLAP,0.5,ATTN_NORM)
+   FRID AAAAAAAAA 1 A_SpawnItemEx ("PTBloodDrop", Random(-4, 4), Random(-4, 4), 0, 0, 0, -8) 
+   FRID A 10 
+   FRID B 20 
+   FRID C 20 
+   FRID B 20 
+   TNT1 A 0 A_StartSound("fridge/rope",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM)
+   FRID A 1 A_SpawnItemEx ("PTBloodDrop", Random(-4, 4), Random(-4, 4), 0, 0, 0, -8)
+   TNT1 A 0 A_StartSound("fridge/blood",CHAN_7,CHANF_OVERLAP,0.5,ATTN_NORM)
+   FRID AAAAAAAAA 1 A_SpawnItemEx ("PTBloodDrop", Random(-4, 4), Random(-4, 4), 0, 0, 0, -8)
+   TNT1 A 0 A_StartSound("baby/fridgemoan",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM) 
+   FRID A 10 
+   FRID D 20 
+   FRID E 20 
+   FRID D 20 
+   loop
+  SpawnBaby:
+   TNT1 A 0
+   TNT1 A 0 A_StartSound("fridge/rope",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM) 
+   FRID A 5 
+   FRID B 3 
+   FRID C 3 
+   TNT1 A 0 A_StartSound("fridge/hit",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM) 
+   FRID F 5 
+   FRID C 3 
+   FRID B 3 
+   TNT1 A 0 A_StartSound("baby/fridgecry",CHAN_7,CHANF_OVERLAP,1.0,ATTN_NORM) 
+   FRID A 5 
+   FRID D 3
+   FRID E 3 
+   TNT1 A 0 A_StartSound("fridge/hit",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM)
+   FRID G 5 
+   FRID E 3 
+   FRID D 3 
+   //repeats without baby crying
+   TNT1 A 0
+   TNT1 A 0 A_StartSound("fridge/rope",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM) 
+   FRID A 5 
+   FRID B 3 
+   FRID C 3 
+   TNT1 A 0 A_StartSound("fridge/hit",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM) 
+   FRID F 5 
+   FRID C 3 
+   FRID B 3 
+   FRID A 5 
+   FRID D 3
+   FRID E 3 
+   TNT1 A 0 A_StartSound("fridge/hit",CHAN_5,CHANF_OVERLAP,1.0,ATTN_NORM)
+   FRID G 5 
+   FRID E 3 
+   FRID D 3 
+   loop
+  SpawnSilent:
+   FRID A -1
+   stop
+  }
+}
+
+ACTOR PTBloodDrop
+{
+  Radius 15
+  Height 8
+  Speed 12
+  FastSpeed 22
+  Scale 0.5
+  Damage 0
+  Projectile
+  +RANDOMIZE
+  +THRUACTORS
+  Renderstyle Normal
+  Alpha 1.0
+  SeeSound ""
+  DeathSound "ICICSHAT"
+  States
+  {
+  Spawn:
+  TNT1 A 0
+  TNT1 A 0 A_Jump(256,"SpawnV1", "SpawnV2")
+  SpawnV1:
+  PTBL A 1 A_JumpIf(waterlevel >= 1, "Death")
+  Loop
+  SpawnV2:
+  PTBL B 1 A_JumpIf(waterlevel >= 1, "Death")
+  Loop
+  Death:
+    TNT1 A 0 
+    Stop
+  }
+}
+
+ACTOR PT_BloodSplat 21050
+{
+//$Category Props_Dirt
+  Radius 1
+  Height 1
+  -SOLID
+  +FLATSPRITE
+  States
+  {
+  Spawn:
+   PTBL C -1 
+   Stop
+  }
+}
+//Specialstuff
+
+ACTOR PT_PictureFragment1 21088
+{
+//$Category Props_Tokens
+  Radius 12
+  Height 4
+  Health 1
+  mass 99999
+  Scale 0.5
+  MONSTER
+  -SOLID
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  -PUSHABLE
+  +DONTTHRUST
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   PICF A 0
+   PICF A 0 A_Jump(128,"Spawn2")
+   PICF A -1
+   Stop
+  Spawn2:
+   PICF B -1
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_PictureFragment2 21089
+{
+//$Category Props_Tokens
+  Radius 12
+  Height 4
+  Health 1
+  mass 99999
+  Scale 0.5
+  MONSTER
+  -SOLID
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  -PUSHABLE
+  +DONTTHRUST
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   PICF C -1
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+
+
+ACTOR OLD_PictureFragment1 : SwitchingDecoration 
+{
+//$Category Props_CoreProps
+  Radius 1
+  Height 1
+  Activation THINGSPEC_Activate
+  +USESPECIAL 
+  -SOLID
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   PICF A 0
+   PICF A 0 A_Jump(128,"Spawn2")
+   PICF A -1
+   Stop
+  Spawn2:
+   PICF B -1
+   Stop
+   Active:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR OLD_PictureFragment2 : SwitchingDecoration 
+{
+//$Category Props_CoreProps
+  Radius 1
+  Height 1
+  Activation THINGSPEC_Activate
+  +USESPECIAL 
+  -SOLID
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   PICF C -1
+   Stop
+   Active:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_DynamicDoor1 21090
+{
+//$Category Props_Doors
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  NotVisible:
+   TNT1 A -1
+   Stop
+  }
+}
+
+ACTOR PT_DynamicDoor2 21091
+{
+//$Category Props_Doors
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  NotVisible:
+   TNT1 A -1
+   Stop
+  }
+}
+
+//Tokens
+
+ACTOR PT_HallwayCheck 22060
+{
+//$Category Props_Tokens
+  Radius 48
+  Height 64
+  +SOLID
+  MONSTER
+  -COUNTKILL
+  +TOUCHY
+  +NOPAIN
+  +NOBLOOD
+  DamageFactor "InteractionDamage", 0.0
+  States
+  {
+  Spawn:
+   TNT1 A -1
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_ShootableCheck 22061
+{
+//$Category Props_Tokens
+  Radius 6
+  Height 96
+  Health 100
+  mass 99999
+  +SOLID
+  MONSTER
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  +DONTTHRUST
+  States
+  {
+  Spawn:
+   TNT1 A -1
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_ShootableCheck_Small 22062
+{
+//$Category Props_Tokens
+  Radius 6
+  Height 8
+  Health 100
+  mass 99999
+  MONSTER
+  -SOLID
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  -PUSHABLE
+  +DONTTHRUST
+  States
+  {
+  Spawn:
+   TNT1 A -1 
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_ShootableCheck_Small_Fly 22063
+{
+//$Category Props_Tokens
+  Radius 6
+  Height 16
+  Health 100
+  mass 99999
+  MONSTER
+  -SOLID
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  -PUSHABLE
+  +DONTTHRUST
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   TNT1 A -1 
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_ShootableCheck_Small_Fly_1HP 22064
+{
+//$Category Props_Tokens
+  Radius 12
+  Height 16
+  Health 1
+  mass 99999
+  MONSTER
+  -SOLID
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  -PUSHABLE
+  +DONTTHRUST
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   TNT1 A -1 
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_ShootableCheck_Smaller_Fly 22065
+{
+//$Category Props_Tokens
+  Radius 6
+  Height 4
+  Health 50
+  mass 99999
+  MONSTER
+  -SOLID
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  -PUSHABLE
+  +DONTTHRUST
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   TNT1 A -1 
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+ACTOR PT_ShootableCheckBig_1HP 22066
+{
+//$Category Props_Tokens
+  Radius 6
+  Height 96
+  Health 1
+  mass 99999
+  +SOLID
+  MONSTER
+  -COUNTKILL
+  +SHOOTABLE
+  +NOPAIN
+  +NOBLOOD
+  +DONTTHRUST
+  States
+  {
+  Spawn:
+   TNT1 A -1
+   Stop
+  Death:
+   TNT1 A 1
+   Stop
+  }
+}
+
+

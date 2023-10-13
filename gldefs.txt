@@ -1,0 +1,43 @@
+
+material texture models/props/walllamp/pt_lampw3.png //original texture
+{ 
+ 	brightmap "models/props/walllamp/bm_lampw3.png"
+}
+
+//Shaders
+
+HardwareShader PostProcess scene
+{
+	Name "filmgrainshader"
+	Shader "shaders/PostProcess/FilmGrain.fp" 330
+	Uniform float timer
+	Uniform float amount
+	Uniform float pixelSize
+}
+
+HardwareShader PostProcess scene
+{
+	Name "vignetteshader"
+	Shader "shaders/PostProcess/Vignette.fp" 330
+	Uniform float intensity
+	Uniform float falloff
+}
+
+HardwareShader PostProcess beforebloom
+{
+	Name "MBlur"
+	Shader "shaders/PostProcess/MBlur.fp" 330
+	Uniform vec2 steps
+	Uniform int samples
+	Uniform float increment
+	Uniform int blendmode
+	//Uniform float dist
+}
+
+HardwareShader PostProcess scene
+{
+	Name "tvdistortionshader"
+	Shader "shaders/PostProcess/TvDist.fp" 330
+	Uniform float timer
+	Uniform vec3 mpos
+}

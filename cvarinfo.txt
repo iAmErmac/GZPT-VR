@@ -1,0 +1,27 @@
+user bool cl_tvdistortion = true;
+
+server int fs_enabled = 1;
+server float fs_volume_mul = 1.0;
+server float fs_delay_mul = 1.0;
+
+user bool cl_filmgrain_pt = true;
+user float cl_filmgrain_amount_pt = 0.175;
+user int cl_filmgrain_pixelsize_pt = 320;
+
+user bool cl_vignette_pt = true;
+user float cl_vignette_intensity_pt = 120.0;
+user float cl_vignette_falloff_pt = 0.160;
+
+user bool mblur_pt = true ;
+user int mblur_samples_pt = 45 ;
+user float mblur_strength_pt = 64 ;
+user float mblur_strength_walk_pt = 30 ;
+user float mblur_strength_jump_pt = 30 ;
+user float mblur_recovery_pt = 64 ;
+user int mblur_blendmode_pt = 1 ;
+user bool mblur_autostop_pt = true ;
+user float mblur_threshold_pt = 30 ;
+user float mblur_recovery2_pt = 90 ;
+user bool mblur_dynsamps_pt = true ;
+user int mblur_pcurve_pt = 1 ;
+

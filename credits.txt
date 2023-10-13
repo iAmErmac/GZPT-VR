@@ -1,0 +1,34 @@
+GZ PT by Andrea Gori
+
+
+Big Tree by Enjay 
+
+FOOTSTEPS code
+
+The Zombie Killer
+
+FLASHLIGHT
+
+Flashlight system by dodopod
+
+SHADERS
+
+Vignette Shader by Tormentor667
+Pixel Grain Shader by Nash
+Motion Blur Shader by Pixel Eater
+TV Distortion by Ethan Jennings
+
+Playtesters
+
+Prettyfist
+Wartorn
+
+Additional help
+
+Gianni Matragrano 
+
+PT Emulation 1.3 by Artur Łączkowski was used as one of the points of reference for the 
+creation of this remake, many aspects of this remake wouldn't have been possible without trying the game in the first place
+and that's all thanks to his efforts. I'd like to sincerely thank the author for his contribution to the PT and Silent Hill community.
+
+

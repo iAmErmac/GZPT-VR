@@ -1,0 +1,260 @@
+//player
+flashlight/on PTFLIGHT
+flashlight/off PTFLIGHT
+
+//props
+bell/midnight midbell
+phone/ring phonecl
+radio/chosen uchosen
+
+radio/loop1 radio_1
+radio/loop7 radio_2
+radio/loop9 radio_3
+radio/loop11 radio_4
+radio/loop12 radio_5
+radio/baby radio_6
+
+glitch/buzz ptglitch
+glitch/voice ptglcraz
+
+LAMPCR1 LAMPCR1
+LAMPCR2 LAMPCR2
+LAMPCR3 LAMPCR3
+LAMPCR4 LAMPCR4
+LAMPCR5 LAMPCR5
+LAMPCR6 LAMPCR6
+LAMPCR7 LAMPCR7
+LAMPCR8 LAMPCR8
+LAMPCR9 LAMPCR9
+LAMPCR10 LAMPCR10
+LAMPCR11 LAMPCR11
+LAMPCR12 LAMPCR12
+$random light/woblamp { LAMPCR1 LAMPCR2 LAMPCR3 LAMPCR4 LAMPCR5 LAMPCR6 LAMPCR7 LAMPCR8 LAMPCR9 LAMPCR10 LAMPCR11 LAMPCR12 }
+
+light/buzz1 LIGHBUZ1
+light/buzz2 LIGHBUZ2
+
+light/turnoff LIGHTOFF
+light/turnon LIGHTON
+
+window/break wndwbrk
+photo/eyegouge eyegouge
+
+FRDROPE1 FRDROPE1
+FRDROPE2 FRDROPE2
+FRDROPE3 FRDROPE3
+FRDROPE4 FRDROPE4
+$random fridge/rope { FRDROPE1 FRDROPE2 FRDROPE3 FRDROPE4 }
+
+FRDBLD1 FRDBLD1
+FRDBLD2 FRDBLD2
+FRDBLD3 FRDBLD3
+FRDBLD4 FRDBLD4
+$random fridge/blood { FRDBLD1 FRDBLD2 FRDBLD3 FRDBLD4 }
+
+FRDHIT1 FRDHIT1
+FRDHIT2 FRDHIT2 
+FRDHIT3 FRDHIT3
+FRDHIT4 FRDHIT4
+$random fridge/hit { FRDHIT1 FRDHIT2 FRDHIT3 FRDHIT4 }
+//door
+
+door/loopdoor1 LOOPDR1
+door/loopdoor2 LOOPDR2
+$random door/loopdoor { door/loopdoor1 door/loopdoor2 }
+
+door/introdoor INITIALD
+door/lockedknob DRKNOB1
+door/closeslam DOORCLS1
+door/closesoft DOORCLS2
+door/opencreepy DOOROPCR
+door/open1 DOOROPN1
+door/slam DOORSLAM
+
+DOORHIT1 DOORHIT1
+DOORHIT2 DOORHIT2
+DOORHIT3 DOORHIT3
+DOORHIT4 DOORHIT4
+DOORHIT6 DOORHIT6
+DOORHIT7 DOORHIT7
+DOORHIT8 DOORHIT8
+$random door/doorhit { DOORHIT1 DOORHIT2 DOORHIT3 DOORHIT4 DOORHIT6 DOORHIT7 DOORHIT8 }
+
+door/doorboom DOORBOOM
+
+DRTHMP1 DRTHMP1
+DRTHMP2 DRTHMP2
+DRTHMP3 DRTHMP3
+DRTHMP4 DRTHMP4
+DRTHMP5 DRTHMP5
+DRTHMP6 DRTHMP6
+$random door/doorthump { DRTHMP1 DRTHMP2 DRTHMP3 DRTHMP4 DRTHMP5 DRTHMP6 }
+
+door/pull1 DOORPULL
+door/pull2 DOORPUL2
+
+door/unlock DOORUNLK
+
+//lisa
+LISAWP1 LISAWP1
+LISAWP2 LISAWP2
+LISAWP3 LISAWP3
+LISAWP4 LISAWP4
+LISAWP5 LISAWP5
+LISAWP6 LISAWP6
+LISAWP7 LISAWP7
+LISAWP8 LISAWP8
+LISAWP9 LISAWP9
+LISAWP10 LISAWP10
+LISAWP11 LISAWP11
+
+$random lisa/weeping { LISAWP1 LISAWP2 LISAWP3 LISAWP4 LISAWP5 LISAWP6 LISAWP7 LISAWP8 LISAWP9 LISAWP10 LISAWP11 }
+
+LISABR1 LISABR1
+LISABR2 LISABR2
+LISABR3 LISABR3 
+LISABR4 LISABR4
+LISABR5 LISABR5
+LISABR6 LISABR6
+LISABR7 LISABR7
+
+$random lisa/crying { LISABR1 LISABR2 LISABR3 LISABR4 LISABR5 LISABR6 }
+
+lisa/jumpscare lisajscr
+
+lisa/doorlaugh lisalaf
+
+lisa/activescare lis_scr
+
+//baby
+
+BABYECH1 BABYECH1
+BABYECH2 BABYECH2
+BABYECH3 BABYECH3
+BABYECH4 BABYECH4
+BABYECH5 BABYECH5
+BABYECH6 BABYECH6
+BABYECH7 BABYECH7
+BABYECH8 BABYECH8
+
+$random baby/echocry { BABYECH1 BABYECH2 BABYECH3 BABYECH4 BABYECH5 BABYECH6 BABYECH7 BABYECH8 }
+$random baby/fridgemoan { BABYECH1 BABYECH2 BABYECH3 }
+$random baby/fridgecry { BABYECH4 BABYECH5 BABYECH6 BABYECH7 BABYECH8 }
+
+BABYCRY1 BABYCRY1
+BABYCRY2 BABYCRY2
+BABYCRY3 BABYCRY3
+BABYCRY4 BABYCRY4
+BABYCRY5 BABYCRY5
+BABYCRY6 BABYCRY6
+BABYCRY7 BABYCRY7
+BABYCRY8 BABYCRY8
+BABYCRY9 BABYCRY9
+BABYCR10 BABYCR10
+BABYCR11 BABYCR11
+BABYCR12 BABYCR12
+BABYCR13 BABYCR13
+
+$random baby/babycry { BABYCRY1 BABYCRY2 BABYCRY3 BABYCRY4 BABYCRY5 BABYCRY6 BABYCRY7 BABYCRY8 BABYCRY9 BABYCR10 BABYCR11 BABYCR12 BABYCR13 }
+
+baby/laugh1 BABYLAF1
+baby/laugh2 BABYLAF2 
+baby/laugh3 BABYLAF3
+baby/laugh4 BABYLAF4
+
+//cutscene
+intro/doong intrdong
+intro/getup intrgetp
+bath/flshgrab flshgrab
+get/picture picfrget
+cutscene/basement BASEM
+cutscene/paperbag cpbag
+cutscene/bagambient pbagcrk
+cutscene/silenthills c_final
+cutscene/title ctitle
+//ambient 
+WDROP1 WDROP1 
+WDROP2 WDROP2
+WDROP3 WDROP3
+WDROP4 WDROP4
+WDROP5 WDROP5
+WDROP6 WDROP6
+WDROP7 WDROP7
+WDROP8 WDROP8
+WDROP9 WDROP9
+
+$random water/drop { WDROP1 WDROP2 WDROP3 WDROP4 WDROP5 WDROP6 WDROP7 WDROP8 WDROP9 }
+
+PTRAIN1 PTRAIN1
+PTRAIN2 PTRAIN2
+
+$alias Amb_Rain1	PTRAIN1
+$ambient 1 Amb_Rain1 point continuous 1.0 
+
+$alias Amb_Rain2	PTRAIN2
+$ambient 2 Amb_Rain2 point continuous 1.0 
+
+//player
+//footstep
+
+fswood1 fswood1
+fswood2 fswood2
+fswood3 fswood3
+fswood4 fswood4
+fswood5 fswood5
+
+$random footstep/wood { fswood1 fswood2 fswood3 fswood4 fswood5 }
+
+fsbasem1 fsbasem1
+fsbasem2 fsbasem2
+fsbasem3 fsbasem3
+fsbasem4 fsbasem4
+fsbasem5 fsbasem5
+fsbasem6 fsbasem6
+fsbasem7 fsbasem7
+fsbasem8 fsbasem8
+fsbasem9 fsbasem9
+
+$random footstep/basement { fsbasem1 fsbasem2 fsbasem3 fsbasem4 fsbasem5 fsbasem6 fsbasem7 fsbasem8 fsbasem9 }
+
+//bd drm - props to gianni
+brutal/know bd_iknow
+brutal/radio bd_radio
+
+//let's disable all the sounds for the player class
+rdnone rdnone
+$playeralias Reedvoic  male	*pain100 rdnone
+$playeralias Reedvoic  male	*pain75 rdnone
+$playeralias Reedvoic  male	*pain50 rdnone
+$playeralias Reedvoic  male	*pain25 rdnone
+$playeralias Reedvoic  male	*death rdnone
+$playeralias Reedvoic  male	*xdeath rdnone
+$playeralias Reedvoic  male	*usefail rdnone
+$playeralias Reedvoic  male	*grunt rdnone
+$playersound Reedvoic  male	*land rdnone
+$playeralias Reedvoic  male	*jump rdnone
+
+$playeralias player  male	*pain100 rdnone
+$playeralias player  male	*pain75 rdnone
+$playeralias player  male	*pain50 rdnone
+$playeralias player  male	*pain25 rdnone
+$playeralias player  male	*death rdnone
+$playeralias player  male	*xdeath rdnone
+$playeralias player  male	*usefail rdnone
+$playeralias player  male	*grunt rdnone
+$playersound player  male	*land rdnone
+$playeralias player  male	*jump rdnone
+
+//doom menu
+menu/activate			PTFLIGHT	// Activate a new menu
+menu/backup			PTFLIGH2	// Backup to previous menu
+menu/prompt			MSELCT	// Activate a prompt "menu"
+menu/cursor			none		// Move cursor up/down
+menu/change			MSELCT	// Select new value for option
+menu/invalid			PTFLIGH2		// Menu not available
+menu/dismiss			MSELCT	// Dismiss a prompt message
+menu/choose			MSELCT	// Choose a menu item
+menu/clear			PTFLIGH2	// Close top menu
+
+$random menu/quit1 { menu/prompt }
+$random menu/quit2 { menu/prompt }

@@ -1,0 +1,86 @@
+texture PT_32_1
+    allowdecals
+    pic PT_32_1 tics 3
+    pic PT_32_2 tics 3
+	pic PT_32_3 tics 3
+    pic PT_32_4 tics 3
+    pic PT_32_5 tics 3
+	pic PT_32_6 tics 3
+    pic PT_32_7 tics 3
+    pic PT_32_8 tics 3
+	pic PT_32_9 tics 3
+    pic PT_32_10 tics 3
+    pic PT_32_11 tics 3
+	
+texture PT_18_1
+    allowdecals
+    pic PT_18_1 tics 3
+    pic PT_18_2 tics 3
+	pic PT_18_3 tics 3
+    pic PT_18_4 tics 3
+    pic PT_18_5 tics 3
+	pic PT_18_6 tics 3
+    pic PT_18_7 tics 3
+    pic PT_18_8 tics 3
+	pic PT_18_9 tics 3
+    pic PT_18_10 tics 3
+    pic PT_18_11 tics 3
+	
+texture PT_64_1
+    allowdecals
+    pic PT_64_1 tics 3
+    pic PT_64_2 tics 3
+	pic PT_64_3 tics 3
+    pic PT_64_4 tics 3
+    pic PT_64_5 tics 3
+	pic PT_64_6 tics 3
+    pic PT_64_7 tics 3
+    pic PT_64_8 tics 3
+	pic PT_64_9 tics 3
+    pic PT_64_10 tics 3
+    pic PT_64_11 tics 3
+
+texture PT_16_1
+    allowdecals
+    pic PT_16_1 tics 3
+    pic PT_16_2 tics 3
+	pic PT_16_3 tics 3
+    pic PT_16_4 tics 3
+    pic PT_16_5 tics 3
+	pic PT_16_6 tics 3
+    pic PT_16_7 tics 3
+    pic PT_16_8 tics 3
+	pic PT_16_9 tics 3
+    pic PT_16_10 tics 3
+    pic PT_16_11 tics 3
+	
+texture PT_3F_1
+    allowdecals
+    pic PT_3F_1 tics 3
+    pic PT_3F_2 tics 3
+	pic PT_3F_3 tics 3
+    pic PT_3F_4 tics 3
+    pic PT_3F_5 tics 3
+	pic PT_3F_6 tics 3
+    pic PT_3F_7 tics 3
+    pic PT_3F_8 tics 3
+	pic PT_3F_9 tics 3
+    pic PT_3F_10 tics 3
+    pic PT_3F_11 tics 3
+	
+texture PT_4F_1
+    allowdecals
+    pic PT_4F_1 tics 3
+    pic PT_4F_2 tics 3
+	pic PT_4F_3 tics 3
+    pic PT_4F_4 tics 3
+    pic PT_4F_5 tics 3
+	pic PT_4F_6 tics 3
+    pic PT_4F_7 tics 3
+    pic PT_4F_8 tics 3
+	pic PT_4F_9 tics 3
+    pic PT_4F_10 tics 3
+    pic PT_4F_11 tics 3
+	
+warp2 texture cvfga0 0.1
+warp2 texture cvfgb0 0.1

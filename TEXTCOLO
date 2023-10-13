@@ -1,0 +1,14 @@
+PtText
+{
+	#000000  #EFEFEF
+Console:
+	#272727  #8B8B8B    0 127
+	#505050  #FFFFFF  128 256
+Flat:
+	#CCCCCC
+}
+
+PtText2
+{
+	#49413D #EAE2CE
+}

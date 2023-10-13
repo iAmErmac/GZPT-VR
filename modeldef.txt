@@ -1,0 +1,307 @@
+Model PT_WallLamp
+{  
+   Path "models\props\walllamp"
+   Skin 0 "pt_lampw.png"
+   Model 0 "wlamp.md3"
+   Scale 12 12 12
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_WallLamp
+{  
+   Path "models\props\walllamp"
+   Skin 0 "pt_lampw3.png"
+   Model 0 "wlamp.md3"
+   Scale 12 12 12
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MER2 A 0 0
+}
+
+Model PT_WallLampGlass
+{  
+   Path "models\props\walllamp"
+   Skin 0 "pt_lampw2.png"
+   Model 0 "wlamp.md3"
+   Scale 12 12 12
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_WallLamp_Lit
+{  
+   Path "models\props\walllamp"
+   Skin 0 "pt_lampw3.png"
+   Model 0 "wlamp.md3"
+   Scale 12 12 12
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_WallLamp_Lit
+{  
+   Path "models\props\walllamp"
+   Skin 0 "pt_lampw.png"
+   Model 0 "wlamp.md3"
+   Scale 12 12 12
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MER2 A 0 0
+}
+
+Model PT_Photo1
+{  
+   Path "models\props\photos"
+   Skin 0 "ptphoto1.png"
+   Model 0 "pht1.md3"
+   Scale 10 10 10
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_Photo1
+{  
+   Path "models\props\photos"
+   Skin 0 "ptphoto5.png"
+   Model 0 "pht1.md3"
+   Scale 10 10 10
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex LAMP B 0 0
+}
+
+Model PT_Photo1
+{  
+   Path "models\props\photos"
+   Skin 0 "ptphoto6.png"
+   Model 0 "pht1.md3"
+   Scale 10 10 10
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex LAMP C 0 0
+}
+
+
+Model PT_Photo2
+{  
+   Path "models\props\photos"
+   Skin 0 "ptphoto2.png"
+   Model 0 "pht1.md3"
+   Scale 10 10 10
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_Photo3
+{  
+   Path "models\props\photos"
+   Skin 0 "ptphoto3.png"
+   Model 0 "pht1.md3"
+   Scale 8 8 8
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_Photo4
+{  
+   Path "models\props\photos"
+   Skin 0 "ptphoto4.png"
+   Model 0 "pht1.md3"
+   Scale 6 6 6
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_Photo5
+{  
+   Path "models\props\photos"
+   Skin 0 "ptphoto1.png"
+   Model 0 "pht2.md3"
+   Scale 6 6 6
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_Phone
+{  
+   Path "models\props\phone"
+   Skin 0 "ptphone.png"
+   Model 0 "ptphon.md3"
+   Scale 8 8 8
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_DynamicDoor1
+{  
+   Path "models\props\door"
+   Skin 0 "modldor.png"
+   Model 0 "ptdor1.md3"
+   Scale 5.6 5.6 6.72
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model PT_DynamicDoor2
+{  
+   Path "models\props\door"
+   Skin 0 "modldor2.png"
+   Model 0 "ptdor1.md3"
+   Scale 5.6 5.6 6.72
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model GFX_RoachWall
+{  
+   Path "models\props\wallroach"
+   Skin 0 "wroch1.png"
+   Model 0 "wallroch.md3"
+   Offset -1.8 0 0
+   Scale 0.7 0.7 0.9
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex ROCH A 0 0
+}
+
+Model GFX_RoachWall
+{  
+   Path "models\props\wallroach"
+   Skin 0 "wroch1.png"
+   Model 0 "wallroc2.md3"
+   Offset -1.8 0 0
+   Scale 0.7 0.7 0.9
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex ROCH B 0 0
+}
+
+Model GFX_RoachWall
+{  
+   Path "models\props\wallroach"
+   Skin 0 "wroch1.png"
+   Model 0 "wallroc3.md3"
+   Offset -1.8 0 0
+   Scale 0.7 0.7 0.9
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex ROCH C 0 0
+}
+
+Model GFX_RoachWall
+{  
+   Path "models\props\wallroach"
+   Skin 0 "wroch1.png"
+   Model 0 "wallroc4.md3"
+   Offset -1.8 0 0
+   Scale 0.7 0.7 0.9
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex ROCH D 0 0
+}
+
+Model PT_ToiletPaper
+{  
+   Path "models\props\toilp"
+   Skin 0 "tpaper.png"
+   Model 0 "toilp.md3"
+   Offset -1.9 0 0
+   Scale 4.6 4.6 5.72
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model SH_Car1
+{  
+   Path "models\props\car"
+   Skin 0 "ptcar.png"
+   Model 0 "ptcr.md3"
+   Scale 18 18 18
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model SH_Car2
+{  
+   Path "models\props\car"
+   Skin 0 "ptcar2.png"
+   Model 0 "ptcr.md3"
+   Scale 18 18 18
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+
+Model SH_Van1
+{  
+   Path "models\props\van"
+   Skin 0 "ptvan.png"
+   Model 0 "ptvn.md3"
+   Scale 18 18 18
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model SH_Fire_Escape1
+{  
+   Path "models\props\fireesc"
+   Skin 0 "firescp.png"
+   Model 0 "firs.md3"
+   Scale 30 30 30
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+
+Model SH_Fire_Escape2
+{  
+   Path "models\props\fireesc"
+   Skin 0 "firescp.png"
+   Model 0 "firs2.md3"
+   Scale 30 30 30
+   useactorpitch
+   USEACTORROLL
+   
+   FrameIndex MERR A 0 0
+}
+

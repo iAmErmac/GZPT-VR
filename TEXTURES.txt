@@ -1,0 +1,6 @@
+graphic PT_ICN, 56,50
+{
+Xscale 3
+YScale 3
+Patch PT_ICN, 0, 0
+}

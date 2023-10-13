@@ -1,0 +1,11 @@
+IWad
+{
+	Name = "GZ PT"
+	Autoname = "gz.pt"
+	Game = "Doom"
+	Config = "GZPT"
+	IWADName = "GZPT.ipk3"
+	Mapinfo = "mapinfo/doom2.txt"
+	MustContain = "PT01"
+	BannerColors = "ff ff ff", "00 00 00"
+}

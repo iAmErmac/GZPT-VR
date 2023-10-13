@@ -1,0 +1,50 @@
+[en enu eng fr ita default]
+QUITMSG = "\c[PtText]Quit the game?";
+QUITMSG1 = "\c[PtText]Quit the game?";
+QUITMSG2 = "\c[PtText]Quit the game?";
+QUITMSG3 = "\c[PtText]Don't touch that dial now, we're just getting started...";
+QUITMSG4 = "\c[PtText]Quit the game?";
+QUITMSG5 = "\c[PtText]Quit the game?";
+QUITMSG6 = "\c[PtText]Quit the game?";
+QUITMSG7 = "\c[PtText]Quit the game?";
+QUITMSG8 = "\c[PtText]Forgive me lisa.";
+QUITMSG9 = "\c[PtText]Quit the game?";
+QUITMSG10 = "\c[PtText]Quit the game?";
+QUITMSG11 = "\c[PtText]Quit the game?";
+QUITMSG12 = "\c[PtText]Quit the game?";
+QUITMSG13 = "\c[PtText]Quit the game?";
+QUITMSG14 = "\c[PtText]Quit the game?";
+
+TXT_RANDOMGOODBYE_1 = "Close";
+TXT_RANDOMGOODBYE_2 = "Close";
+TXT_RANDOMGOODBYE_3 = "Close";
+
+// Footsteps
+// Language Definitions
+
+// This is where the footstep sounds for each texture are defined.
+// The definition MUST be STEP_<texturename>
+
+
+// Flats
+// This is a list of flats that have footstep sounds associated with them.
+// Items are separated by a colon ( : )
+// If a flat/texture is not present in this list, then only the default sound will be
+// played when it is walked on.
+STEP_FLATS = "PT_WD1:PT_WD2:PT_WD3:PT_CC1:PT_BT2"
+
+// Sounds
+STEP_DEFAULT = "footstep/basement";
+
+//Wood
+STEP_PT_WD1 = "footstep/wood";
+STEP_PT_WD2 = "footstep/wood";
+STEP_PT_WD3 = "footstep/wood";
+
+//Basement
+
+STEP_PT_CC1 = "footstep/basement";
+
+//Bathroom
+
+STEP_PT_BT2 = "footstep/basement";

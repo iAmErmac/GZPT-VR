@@ -1,0 +1,218 @@
+version "2.4"
+
+#include "zscript/flashlight.zs"
+#include "zscript/shaderctrl.zc"
+
+class ReedusZscript:PlayerPawn{
+override void BeginPlay()
+{
+  Super.BeginPlay();
+  viewbob = 0.2;
+}
+
+}
+
+//FILM GRAIN SHADER
+class FilmGrainShaderHandler : StaticEventHandler
+{
+	override void RenderOverlay(RenderEvent e)
+	{
+		// get correct player
+		PlayerInfo p = players[consoleplayer];
+
+		//===========================================================================
+		//
+		// FILM GRAIN
+		//
+		//===========================================================================
+		if (Cvar.GetCVar("cl_filmgrain_pt", p).GetBool() == true)
+		{
+			EnableFilmGrain(p, gametic + e.FracTic);
+		}
+		else
+		{
+			DisableFilmGrain(p);
+		}
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	ui void EnableFilmGrain(PlayerInfo p, double fracTic)
+	{
+		CVar acv = CVar.GetCVar("cl_filmgrain_amount_pt", p);
+		double a = (acv ? CVar.GetCVar("cl_filmgrain_amount_pt", p).GetFloat() : 0);
+		int px = (acv ? CVar.GetCVar("cl_filmgrain_pixelsize_pt", p).GetInt() : 0);
+		Shader.SetUniform1f(p, "filmgrainshader", "timer", fracTic);
+		Shader.SetUniform1f(p, "filmgrainshader", "amount", a);
+		Shader.SetUniform1f(p, "filmgrainshader", "pixelSize", double(px));
+		Shader.SetEnabled(p, "filmgrainshader", true);
+	}
+
+	ui void DisableFilmGrain(PlayerInfo p)
+	{
+		Shader.SetEnabled(p, "filmgrainshader", false);
+	}
+}
+
+
+//VIGNETTE SHADER 
+
+class VignetteShaderHandler : StaticEventHandler
+{
+	override void RenderOverlay(RenderEvent e)
+	{
+		// get correct player
+		PlayerInfo p = players[consoleplayer];
+
+		//===========================================================================
+		//
+		// VIGNETTE
+		//
+		//===========================================================================
+		if (Cvar.GetCVar("cl_vignette_pt", p).GetInt() > 0)
+		{
+			EnableVignette();
+		}
+		else
+		{
+			DisableVignette();
+		}
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	ui void EnableVignette(void)
+	{
+		PlayerInfo p = players[consoleplayer];
+		double i = CVar.GetCVar("cl_vignette_intensity_pt", p).GetFloat();
+		double f = CVar.GetCVar("cl_vignette_falloff_pt", p).GetFloat();
+		Shader.SetUniform1f(p, "vignetteshader", "intensity", i);
+		Shader.SetUniform1f(p, "vignetteshader", "falloff", f);
+		Shader.SetEnabled(p, "vignetteshader", true);
+	}
+
+	ui void DisableVignette(void)
+	{
+		PlayerInfo p = players[consoleplayer];
+		Shader.SetEnabled(p, "vignetteshader", false);
+	}
+}
+
+//MOTION BLUR
+
+class MBlurHandler : StaticEventHandler
+{
+	int			pitch, yaw ;
+	double		xtravel, ytravel ;
+	
+	override void PlayerEntered( PlayerEvent e )
+	{
+		PlayerInfo plr = players[ e.PlayerNumber ];
+		if( plr )
+		{	
+			xtravel = 0 ;
+			ytravel = 0 ;
+		}
+	}
+	
+	override void WorldTick()
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr && plr.health > 0 && Cvar.GetCVar( "mblur_pt", plr ).GetBool() )
+		{
+			yaw		= plr.mo.GetPlayerInput( ModInput_Yaw );
+			pitch	= -plr.mo.GetPlayerInput( ModInput_Pitch );
+		}
+	}
+	
+	override void NetworkProcess( ConsoleEvent e )
+	{
+		PlayerInfo	plr = players[ e.Player ];
+		if( plr && e.Name == "liveupdate" )
+		{
+			double pitchcurve ;
+			if( Cvar.GetCVar( "mblur_pcurve_pt", plr ).GetInt() == 1 )	pitchcurve = sin( 90. - abs( plr.mo.pitch ));
+			else														pitchcurve = sqrt( 1. - abs( plr.mo.pitch * 1. / 90 ));
+			
+			double amount		= Cvar.GetCVar( "mblur_strength_pt", plr ).GetFloat() * 10. / 32767 * pitchcurve ;
+			double amount_walk	= Cvar.GetCVar( "mblur_strength_walk_pt", plr ).GetFloat() * .1 ;
+			double amount_jump	= Cvar.GetCVar( "mblur_strength_jump_pt", plr ).GetFloat() * .1 * pitchcurve ;
+			double decay		= 1. - Cvar.GetCVar( "mblur_recovery_pt", plr ).GetFloat() * .01 ;
+			
+			xtravel				= xtravel * decay + yaw * amount * .625 ;
+			ytravel				= ytravel * decay + pitch * amount ;
+			
+			if( Cvar.GetCVar( "mblur_autostop_pt", plr ).GetBool() )
+			{
+				double threshold = Cvar.GetCVar( "mblur_threshold_pt", plr ).GetFloat() * 30 ;
+				double decay2 = 1 - Cvar.GetCVar( "mblur_recovery2_pt", plr ).GetFloat() * .01 ;
+				if( abs( yaw )		<= threshold ) xtravel *= decay2 ;
+				if( abs( pitch )	<= threshold ) ytravel *= decay2 ;
+			}
+			
+			double angle = plr.mo.vel.y >= 0 ? 0 : 180 ;
+			if( plr.mo.vel.x != 0 )
+			{
+				angle = atan( plr.mo.vel.y / plr.mo.vel.x );
+				
+				if( plr.mo.vel.x < 0 )			angle += 180 ;
+				else if( plr.mo.vel.y < 0 )	angle += 360 ;
+			}
+			angle				-= ( plr.mo.angle + 180 ) % 360 ;
+			
+			double velocity	= sqrt( plr.mo.vel.x * plr.mo.vel.x + plr.mo.vel.y * plr.mo.vel.y );
+			double sidevel		= sin( angle ) * velocity ;
+			double walkvel		= cos( angle ) * velocity ;
+			if( plr.mo.pitch > 0 ) walkvel = -walkvel ;
+			
+			xtravel				+= sidevel * amount_walk * .625 ;
+			ytravel				+= plr.mo.vel.z * amount_jump + walkvel * amount_walk * ( 1. - pitchcurve );
+			
+			//console.printf( "%f", angle );
+		}
+	}
+	
+	override void UiTick()
+	{
+		PlayerInfo	plr = players[ consoleplayer ];
+		if( plr )
+		{
+			if( plr.health > 0 && Cvar.GetCVar( "mblur_pt", plr ).GetBool() )//&& yaw && pitch )
+			{
+				EventHandler.SendNetworkEvent( "liveupdate" );
+				
+				vector2 travel		= ( xtravel / screen.getwidth(), ytravel / screen.getheight() );
+				double dist			= sqrt( travel.x * travel.x + travel.y * travel.y );
+				
+				double dynsamps = 1. ;
+				if( Cvar.GetCVar( "mblur_dynsamps_pt", plr ).GetBool() ) dynsamps = dist * 12 ;
+				
+				int copies			= 1 + int( Cvar.GetCVar( "mblur_samples_pt", plr ).GetInt() * dynsamps );
+				double increment	= 1. / copies ;
+				
+				Shader.SetUniform2f( plr, "MBlur", "steps", travel * increment );
+				Shader.SetUniform1i( plr, "MBlur", "samples", copies );
+				Shader.SetUniform1f( plr, "MBlur", "increment", increment );
+				Shader.SetUniform1i( plr, "MBlur", "blendmode", Cvar.GetCVar( "mblur_blendmode_pt", plr ).GetInt() );
+				//Shader.SetUniform1f( plr, "MBlur", "dist", dist );
+					
+				Shader.SetEnabled( plr, "MBlur", true );
+			}
+			else
+			{
+				Shader.SetEnabled( plr, "MBlur", false );
+			}
+		}
+	}
+}
+
+
+

@@ -1,0 +1,146 @@
+DEFAULTLISTMENU
+{
+    Font "DBIGFONT", "Untranslated"
+        Selector "PT_ICN", -32, 5
+        Linespacing 30
+        Font "DBIGFONT", "Untranslated"
+}
+
+LISTMENU "MainMenu"
+{
+        Position 97, 72
+    
+
+        PatchItem "PT_NWG", "n", "PlayerclassMenu"
+		PatchItem "PT_OPT","o", "PTMainOptions"
+		PatchItem "PT_QIT", "q", "QuitMenu"
+    
+}
+
+OptionMenu "PTMainOptions"
+{
+	Title "OPTIONS"
+    StaticText "--General Settings--"
+	StaticText ""
+	Submenu "Set video mode",			"VideoModeMenu"
+	Submenu "Display Options",			"VideoOptions"
+    Submenu "Sound Options",			"SoundOptions"
+	StaticText ""
+	StaticText  "--Adjust the gamma so that the image on the left is clearly visible and the image on the right is just barely visible.--", "PtText2"
+	StaticText ""
+	Submenu "Gamma test image",	"PTGamma"
+    Slider "$DSPLYMNU_GAMMA",					"vid_gamma",					0.75, 3.0, 0.05, 2
+	StaticText ""
+	StaticText "--It is highly recommended to enable always run, mouselook and configure the movement and use keys. Altfire is required to zoom at things.--", "PtText2"
+    StaticText ""
+    Option "$PLYRMNU_ALWAYSRUN", cl_run, "OnOff"
+    //Slider "$PLYRMNU_AUTOAIM", "Autoaim", 0, 35, 1
+	StaticText ""
+    Submenu "Keyboard and Mouse Options",	"PTSpecificControls"
+    StaticText ""
+	StaticText "--Set texture filtering to ''none'' (trilinear) to display the game correctly.--", "PtText2"
+    StaticText ""
+	Option "$GLTEXMNU_TEXFILTER",		gl_texture_filter,				"FilterModes"
+	Option "$GLTEXMNU_ANISOTROPIC",		gl_texture_filter_anisotropic,	"Anisotropy"
+	StaticText ""
+	StaticText "--Dynamic lights must be enabled, Shadowmaps are optional but heavily recommended.--", "PtText2"
+    StaticText ""
+	//Option "$TCMNU_DYNLIGHTS",					"r_dynlights", "OnOff" software lights
+	Option "$GLLIGHTMNU_LIGHTSENABLED",			gl_lights,				"OnOff"
+	Option "$GLLIGHTMNU_LIGHTSPRITES",			gl_light_sprites,		"YesNo"
+	Option "$GLLIGHTMNU_LIGHTPARTICLES",		gl_light_particles,		"YesNo"
+	Option "$GLLIGHTMNU_LIGHTSHADOWMAP",		gl_light_shadowmap,		"YesNo"
+	Option "$GLLIGHTMNU_LIGHTSHADOWMAPQUALITY", gl_shadowmap_quality,	"ShadowMapQuality"
+	Option "$GLLIGHTMNU_LIGHTSHADOWMAPFILTER", 	gl_shadowmap_filter,	"ShadowMapFilter"
+    StaticText ""
+	StaticText "--You can disable the screen effects here, it's recommended to keep them activated.--", "PtText2"
+	StaticText " "
+	Submenu "Shader Options",	"PTOptions"
+	StaticText " "
+	StaticText "--Optional effects such as Ambient Occlusion and Bloom can be enabled here--", "PtText2"
+	StaticText " "
+	Submenu "PostProcessing Options",			"PostProcessMenu"
+	StaticText " "
+    StaticText "These are the standard GZDoom Options.", "PtText2"
+    StaticText "Only for advanced users.", "PtText"
+	StaticText " "
+	Submenu "Default Gzdoom Options Menu",			"PTAdvancedOptions"
+	SafeCommand "Reset to defaults",	"reset2defaults"
+	SafeCommand	"Reset to last saved",	"reset2saved"
+	Command "Go to console",			"menuconsole"
+}
+
+
+ListMenu "PTGamma"
+{
+    StaticPatchCentered 160, 0, "gammaadj"
+}
+
+OptionMenu "PTOptions"
+{
+	Position -15
+	Title "PT Options"
+	Option "Grain Enabled", "cl_filmgrain_pt", "YesNo"
+	StaticText ""
+	Option "Vignette Enabled", "cl_vignette_pt", "YesNo"
+	StaticText ""
+    Option "Motion Blur Enabled", "mblur_pt", YesNo
+	StaticText ""
+	Option  "Footsteps Enabled", "fs_enabled","OnOff"
+}
+
+OptionMenu "PTAdvancedOptions"
+{
+Title "Advanced Options"
+StaticText " "
+Submenu "Customize Controls",		"CustomizeControls"
+Submenu "Mouse options",			"MouseOptions"
+Submenu "Joystick options",			"JoystickOptions"
+Submenu "Player Setup",				"PlayerMenu"
+Submenu "Gameplay Options",			"GameplayOptions"
+Submenu "Compatibility Options",	"CompatibilityOptions"
+Submenu "Automap Options",			"AutomapOptions"
+Submenu "HUD Options",				"HUDOptions"
+Submenu "Network Options",			"NetworkOptions"
+}
+
+OptionMenu "PTSpecificControls"
+{
+Title "Keyboard and Mouse Options"
+StaticText ""
+StaticText "--Mouse--", "PtText"
+StaticText ""
+StaticText "Mouselook is mandatory in order to play.", "PtText"
+Option "$MOUSEMNU_ALWAYSMOUSELOOK", "freelook", "OnOff"
+StaticText ""
+StaticText  "General", "PtText"
+Option "$MOUSEMNU_ENABLEMOUSE",     "use_mouse", "YesNo"
+Option "$MOUSEMNU_MOUSEINMENU",     "m_use_mouse", "MenuMouse", "use_mouse"
+StaticText  ""
+StaticText  "Additional Options", "PtText"
+Slider "$MOUSEMNU_SENSITIVITY",     "mouse_sensitivity", 0.5, 2.5, 0.1
+Option "$MOUSEMNU_NOPRESCALE",      "m_noprescale", "NoYes"
+Option "$MOUSEMNU_SMOOTHMOUSE",     "smooth_mouse", "YesNo"
+StaticText  ""
+StaticText ""
+StaticText "--Keyboard--", "PtText"
+StaticText ""
+StaticText  "Movement", "PtText"
+Control     "$CNTRLMNU_FORWARD",                "+forward"
+Control     "$CNTRLMNU_BACK",                   "+back"
+Control     "$CNTRLMNU_MOVELEFT",               "+moveleft"
+Control     "$CNTRLMNU_MOVERIGHT",              "+moveright"
+StaticText ""
+StaticText  "Actions", "PtText"
+Control     "$CNTRLMNU_ATTACK",                 "+attack"
+Control     "$CNTRLMNU_ALTATTACK",              "+altattack"
+Control     "$CNTRLMNU_USE",                    "+use"
+StaticText  ""
+StaticText  "Other", "PtText"
+Control     "$CNTRLMNU_MOUSELOOK",              "+mlook"
+Control     "$CNTRLMNU_RUN",                    "+speed"
+Control     "$CNTRLMNU_TOGGLERUN",              "toggle cl_run"
+Control     "$CNTRLMNU_SCREENSHOT",             "screenshot"
+Control     "$CNTRLMNU_CONSOLE",                "toggleconsole"
+}
+

@@ -1,0 +1,42 @@
+GameInfo
+{
+    playerclasses="ReedusPlayer"
+	AddEventHandlers = "VignetteShaderHandler","FilmGrainShaderHandler","MBlurHandler","CustomShaderHandler"
+    menufontcolor_title = "White"
+   	menufontcolor_label = "White"
+	menufontcolor_value = "White"
+	menufontcolor_action = "White"
+	menufontcolor_header = "White"
+	cursorpic = "ptcur"
+    BORDERFLAT = "textures/st_dev/PTBLACK.png" 
+
+   dimcolor = "BLACK"
+dimamount = 0.5
+}
+
+clearepisodes
+episode PT01
+{
+name = "Playable Teaser"
+}
+
+map PT01 "7780"
+{
+music = ""
+sky1 = "PTBLACK"
+LevelNum = 01
+NoJump
+NoCrouch
+}
+
+clearskills
+
+skill ptnormal
+{
+   DefaultSkill 
+   AmmoFactor = 1
+   SpawnFilter = normal
+   name = "Normal"
+   Key = "n"
+   PicName = ""
+}

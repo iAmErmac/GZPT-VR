@@ -1,0 +1,209 @@
+ACTOR SH_Tree 22089
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHTR A -1
+   Stop
+  }
+}
+
+ACTOR SH_Tree2 22090
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHTR B -1
+   Stop
+  }
+}
+
+ACTOR SH_Tree3 22091
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHTR C -1
+   Stop
+  }
+}
+
+ACTOR SH_Warning1 22092
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHPR A -1
+   Stop
+  }
+}
+
+ACTOR SH_BigLamp1 22093
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHPR B -1
+   Stop
+  SpawnFlicker:
+   SHPR BE 1
+   loop
+  }
+}
+
+ACTOR SH_BigLamp2 22094
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHPR C -1
+   Stop
+  }
+}
+
+Actor PTFogFloor 22095
+{
+  //$Category PT_GFX
+  +FloorClip
+  +NOGRAVITY
+  Renderstyle Add
+  Alpha 1.0
+  Scale 4.0
+  States
+  {
+Spawn:
+    CVFG A 0
+    CVFG A 0 A_Jump(256, "Spawn2", "Spawn3")
+  Spawn2:
+    CVFG B -1 
+    stop
+  Spawn3:
+    CVFG A -1 
+    stop
+  }
+}
+
+ACTOR SH_Car1 22096
+{
+//$Category Props_SilentHill
+  Radius 64
+  Height 128
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+ACTOR SH_Van1 22097
+{
+//$Category Props_SilentHill
+  Radius 64
+  Height 128
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+ACTOR SH_Car2 22098
+{
+//$Category Props_SilentHill
+  Radius 64
+  Height 128
+  -SOLID
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+
+ACTOR SH_Barrel 22099
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHPR D -1
+   Stop
+  }
+}
+
+ACTOR SH_Fire_Escape1 22100
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+ACTOR SH_Fire_Escape2 22101
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  +NOGRAVITY
+  States
+  {
+  Spawn:
+   MERR A -1
+   Stop
+  }
+}
+
+ACTOR SH_Lamp_Whitelight 22102
+{
+//$Category Props_SilentHill
+  Radius 1
+  Height 1
+  -SOLID
+  States
+  {
+  Spawn:
+   SHPR F -1
+   Stop
+  }
+}
