@@ -18,7 +18,7 @@ ZDoom forum discussion: https://forum.zdoom.org/viewtopic.php?t=70451
 Some part of the puzzle are sometimes finicky to work so if you are stuck you may want to watch the walkthrough.
 Walkthrough (SPOILERS): https://www.youtube.com/watch?v=fvi0R32MFvo
 
-[![Download Now](https://raster.shields.io/github/downloads/iAmErmac/ZBlood-VR/total)](https://github.com/iAmErmac/ZBlood-VR/releases/latest)
+[![Download Now](https://raster.shields.io/github/downloads/iAmErmac/GZPT-VR/total)](https://github.com/iAmErmac/GZPT-VR/releases/latest)
 
 ## Note
 * Alt-Fire will trigger extra interaction mode

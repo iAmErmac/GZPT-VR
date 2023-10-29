@@ -20,7 +20,7 @@ LISTMENU "MainMenu"
 OptionMenu "PTMainOptions"
 {
 	Title "OPTIONS"
-	Submenu "Quick Menu",			"QuickMenu"
+	Submenu "Quick Menu",			"QZDOptionsMenu"
 	Submenu "VR Options",			"VROptionsMenu"
 	StaticText ""
     StaticText "--General Settings--"

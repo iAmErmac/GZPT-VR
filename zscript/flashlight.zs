@@ -161,6 +161,27 @@ Class PTlineTraceUseDummy : Actor
 	double range;
 }
 
+Class PTDummyPuff1 : Actor
+{
+	Default
+	{
+	Radius 1;
+	Height 1;
+	Speed 0;
+	Damage 0;
+	+GHOST;
+	+NOGRAVITY;
+	Renderstyle "None";
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 2;
+		Stop;
+	}
+}
+
 // Manages the components of the beam, and attaches it to its source
 class PowerFlashlight : Powerup
 {
@@ -201,7 +222,7 @@ class PowerFlashlight : Powerup
         PowerFlashlight.SpotOuterAngle 8;
 
         PowerFlashlight.SpillColor 0x252525;
-        PowerFlashlight.SpillRange 32;
+        PowerFlashlight.SpillRange 512; //32;
         PowerFlashlight.SpillInnerAngle 25;
         PowerFlashlight.SpillOuterAngle 30;
 
@@ -241,18 +262,40 @@ class PowerFlashlight : Powerup
         spot = FlashlightBeam(Spawn("FlashlightBeam", other.pos));
         spot.master = other;
         spot.offset = (ofsX, ofsY, ofsZ);
-        spot.args[0] = spillColor.r;
-        spot.args[1] = spillColor.g;
-        spot.args[2] = spillColor.b;
-        spot.args[3] = spillRange;
-        spot.spotInnerAngle = spillInnerAngle;
-        spot.spotOuterAngle = spillOuterAngle;
+        spot.args[0] = spotColor.r;
+        spot.args[1] = spotColor.g;
+        spot.args[2] = spotColor.b;
+        spot.args[3] = spotRange;
+        spot.spotInnerAngle = spotInnerAngle;
+        spot.spotOuterAngle = spotOuterAngle;
 
+        if (spillRange > 0)
+        {
+            spill = FlashlightBeam(Spawn("FlashlightBeam", other.pos));
+            spill.master = other;
+            spill.offset = (ofsX, ofsY, ofsZ);
+            spill.args[0] = spillColor.r;
+            spill.args[1] = spillColor.g;
+            spill.args[2] = spillColor.b;
+            spill.args[3] = spillRange;
+            spill.spotInnerAngle = spillInnerAngle;
+            spill.spotOuterAngle = spillOuterAngle;
+        }
     }
 
     override void DoEffect()
     {
         Super.DoEffect();
+		
+		let player = owner.player;
+		let pmo = player.mo;
+		double angle = pmo.angle;
+		double pitch = pmo.AimTarget() ? pmo.BulletSlope(null, ALF_PORTALRESTRICT) : pmo.pitch;
+		double dist = 5;
+		if(abs(pmo.vel.x) > 2 || abs(pmo.vel.y) > 2 || abs(pmo.vel.z) > 2) dist = 15;
+		
+		let _puff = pmo.LineAttack(angle, dist, pitch, 0, "melee", "PTDummyPuff1", LAF_NOIMPACTDECAL | LAF_NOINTERACT | LAF_NORANDOMPUFFZ | LAF_ISOFFHAND);
+		spot.beamPos = spill.beamPos = _puff.pos;
 
         int energy = energyType ? owner.CountInv(energyType) : effectTics;
 
@@ -327,14 +370,15 @@ PowerFlashlight.BounceColor 0xD80000;
 class FlashlightBeam : SpotLight
 {
     Vector3 offset;
+    Vector3 beamPos;
 
     override void Tick()
     {
         Super.Tick();
 
         let plyr = PlayerPawn(master);
-        Vector3 beamPos = plyr.OffhandPos; //master.pos;
-        /*beamPos.xy += AngleToVector(master.angle, offset.x);
+        /*Vector3 beamPos = master.pos;
+        beamPos.xy += AngleToVector(master.angle, offset.x);
         beamPos.xy += AngleToVector(master.angle - 90, offset.y);
 
         let plyr = PlayerPawn(master);
