@@ -11,7 +11,6 @@ class PlayerInteractionWep : Weapon
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.NOAUTOAIM
 	+WEAPON.MELEEWEAPON
-	+WEAPON.NOHANDSWITCH
 	Inventory.Pickupmessage "You picked up an incredible box of nothing!";
 	}
 	
@@ -19,17 +18,15 @@ class PlayerInteractionWep : Weapon
 	{
 		if(!owner || !owner.player || owner.player.mo.health < 1) return;
 		
+		Actor beamTracer = owner.SpawnPlayerMissile("PTLightBeamTracer");
+		if(beamTracer) beamTracer.master = self;
+		
 		if(GetAge() && GetAge() % 17 == 0)
 		{
-			vector3 startPos = bOffhandWeapon ? owner.player.mo.OffhandPos : owner.player.mo.AttackPos;
-			startPos.y += owner.radius/2;
-			double angle = (bOffhandWeapon ? owner.player.mo.OffhandAngle : owner.player.mo.AttackAngle) + 90.0;
-			double pitch = -(bOffhandWeapon ? owner.player.mo.OffhandPitch : owner.player.mo.AttackPitch);
-			
-			Actor lineTracer = Actor.Spawn("PTlineTraceUseDummy", startPos);
+			Actor lineTracer = Actor.Spawn("PTlineTraceUseDummy", handPos);
 			lineTracer.master = owner.player.mo;
-			lineTracer.A_SetAngle(angle);
-			lineTracer.A_SetPitch(pitch);
+			lineTracer.A_SetAngle(beamAngle);
+			lineTracer.A_SetPitch(beamPitch);
 			PTlineTraceUseDummy(lineTracer).range = 0.25;
 		}
 	}
@@ -39,12 +36,21 @@ class PlayerInteractionWep : Weapon
 	Ready:
 		TNT1 A 0;
 		HAND A 0 A_TakeInventory("Token_HasReleasedAltFire", 100);
+		HAND A 0 A_JumpIfInventory("PowerFlashlight", 1, "ReadyFLashlight");
 		HAND A 1 
 		{
 			A_CheckReload();
 			A_WeaponReady();
 		}
 		Loop;
+	ReadyFLashlight:
+		HAND C 1
+		{
+			A_CheckReload();
+			A_WeaponReady();
+		}
+		HAND C 0 A_JumpIfInventory("PowerFlashlight", 1, "ReadyFLashlight");
+		Goto Ready;
 	Deselect:
 		HAND A 1 A_Lower(160);
 		Loop;
@@ -68,58 +74,9 @@ class PlayerInteractionWep : Weapon
 		PIST A -1;
 		Stop;
 	}
-}
 
-class PlayerOffhandWep : PlayerInteractionWep
-{
-	Default
-	{
-	+WEAPON.OFFHANDWEAPON
-	}
-	
-	States
-	{
-	Ready:
-		TNT1 A 0;
-		HAND A 0 A_TakeInventory("Token_HasReleasedAltFire", 100);
-		HAND A 0 A_JumpIfInventory("PowerFlashlight", 1, "ReadyFLashlight");
-		HAND A 1 
-		{
-			A_CheckReload();
-			A_WeaponReady();
-		}
-		Loop;
-	ReadyFLashlight:
-		HAND B 1
-		{
-			A_CheckReload();
-			A_WeaponReady();
-		}
-		HAND B 0 A_JumpIfInventory("PowerFlashlight", 1, "ReadyFLashlight");
-		Goto Ready;
-	Deselect:
-		HAND A 1 A_Lower(160);
-		Loop;
-	Select:
-		HAND A 1 A_Raise(160);
-		Loop;
-	Fire:
-		HAND # 1;
-		Goto Ready;
-	AltFire:
-		HAND B 1;
-		goto AltFireHold;
-	AltFireHold:
-		HAND B 1 A_FireProjectile("InteractionBall",0,0,0,13,FPF_NOAUTOAIM,0);
-		HAND B 0 A_Refire("AltFireHold");
-		goto AltFireExit;
-	AltFireExit:
-		HAND A 1 A_GiveInventory("Token_HasReleasedAltFire", 1);
-		goto Ready;
-	Spawn:
-		PIST A -1;
-		Stop;
-	}
+	vector3 handPos;
+	double beamAngle, beamPitch;
 }
 
 Class PTlineTraceUseDummy : Actor
@@ -159,6 +116,54 @@ Class PTlineTraceUseDummy : Actor
 	}
 	
 	double range;
+}
+
+Class PTLightBeamTracer : Actor
+{
+	Vector3 t_pos;
+	double t_pitch;
+	
+	override void BeginPlay()
+	{
+		t_pos = self.pos;
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		
+		let dX = t_pos.x - self.pos.x;
+		let dY = t_pos.y - self.pos.y;
+		let dZ = t_pos.z - self.pos.z;
+		
+		t_pitch = (atan2(sqrt(dX * dX + dY * dY), dZ) * -1) + 90;
+		
+		PlayerInteractionWep(master).handPos = t_pos;
+		PlayerInteractionWep(master).beamPitch = t_pitch;
+		PlayerInteractionWep(master).beamAngle = angle;
+	}
+
+	Default
+	{
+	Projectile;
+	+MISSILE;
+	+NOGRAVITY;
+	+NOBLOCKMAP;
+	+DONTSPLASH;
+	+THRUACTORS;
+	Radius 1;
+	Height 1;
+	Damage 0;
+	Speed 65;
+	RenderStyle "None";
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 1; //don't need more than a single tick
+		Stop;
+	}
 }
 
 Class PTDummyPuff1 : Actor
@@ -294,8 +299,22 @@ class PowerFlashlight : Powerup
 		double dist = 5;
 		if(abs(pmo.vel.x) > 2 || abs(pmo.vel.y) > 2 || abs(pmo.vel.z) > 2) dist = 15;
 		
-		let _puff = pmo.LineAttack(angle, dist, pitch, 0, "melee", "PTDummyPuff1", LAF_NOIMPACTDECAL | LAF_NOINTERACT | LAF_NORANDOMPUFFZ | LAF_ISOFFHAND);
+		let _puff = pmo.LineAttack(angle, dist, pitch, 0, "melee", "PTDummyPuff1", LAF_NOIMPACTDECAL | LAF_NOINTERACT | LAF_NORANDOMPUFFZ);
 		spot.beamPos = spill.beamPos = _puff.pos;
+		
+		let beamTracer = PlayerInteractionWep(pmo.findinventory("PlayerInteractionWep"));
+		let beamAngle = beamTracer.beamAngle;
+		let beamPitch = beamTracer.beamPitch;
+		if(beamAngle)
+		{
+			spot.beamAngle = beamAngle;
+			spill.beamAngle = beamAngle;
+		}
+		if(beamPitch)
+		{
+			spot.beamPitch = beamPitch;
+			spill.beamPitch = beamPitch;
+		}
 
         int energy = energyType ? owner.CountInv(energyType) : effectTics;
 
@@ -369,8 +388,8 @@ PowerFlashlight.BounceColor 0xD80000;
 // Spotlight that follows its master around
 class FlashlightBeam : SpotLight
 {
-    Vector3 offset;
-    Vector3 beamPos;
+    Vector3 offset, beamPos;
+	Double beamAngle, beamPitch;
 
     override void Tick()
     {
@@ -394,8 +413,8 @@ class FlashlightBeam : SpotLight
         SetOrigin(beamPos, true);
 
         vel = master.vel;
-        angle = plyr.OffhandAngle + 90.; //master.angle;
-        pitch = -plyr.OffhandPitch; //master.pitch;
+        angle = beamAngle; //master.angle;
+        pitch = beamPitch; //master.pitch;
     }
 }
 
@@ -463,36 +482,4 @@ class FlashlightBounce : SpotLight
         angle = VectorAngle(reflection.x, reflection.y);
         pitch = -ASin(reflection.z / reflection.Length());
     }
-}
-
-Class OffhandWeaponHandler : Eventhandler
-{
-	override void WorldTick()
-	{
-		if(_isTitlemap) return;
-		
-		Playerinfo player = Players[ConsolePlayer];
-		if(!player) return;
-		
-		if(!player.OffhandWeapon)
-		{
-			let weap = Weapon(player.mo.FindInventory("PlayerOffhandWep"));
-			player.OffhandWeapon = weap;
-			player.PendingWeapon = weap;
-			player.mo.BringUpWeapon();
-		}
-	}
-
-	override void WorldLoaded(WorldEvent event)
-	{
-		_isTitlemap = CheckTitlemap();
-	}
-
-	private static bool CheckTitlemap()
-	{
-		bool isTitlemap = (level.mapname == "TITLEMAP");
-		return isTitlemap;
-	}
-	
-	private bool _isTitlemap;
 }

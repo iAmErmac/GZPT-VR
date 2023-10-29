@@ -11,19 +11,7 @@ Model PlayerInteractionWep
 	FrameIndex HAND B 0 1
 }
 
-Model PlayerOffhandWep
-{  
-	Path "models\player"
-	Model 0 "hand.md3"
-	SurfaceSkin 0 0 "hand_suit.png"
-	SurfaceSkin 0 1 "hand_skin.png"
-	Scale -0.6 0.6 0.6
-	Offset 2.0 -20 -8.0
-   
-	FrameIndex HAND A 0 0
-}
-
-Model PlayerOffhandWep
+Model PlayerInteractionWep
 {  
 	Path "models\player"
 	Model 0 "hand.md3"
@@ -36,5 +24,5 @@ Model PlayerOffhandWep
 	Scale -0.6 0.6 0.6
 	Offset 2.0 -20 -8.0
    
-	FrameIndex HAND B 0 2	FrameIndex HAND B 1 0
+	FrameIndex HAND C 0 2	FrameIndex HAND C 1 0
 }
